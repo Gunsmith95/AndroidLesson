@@ -15,24 +15,20 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val adapter = MyAdapter()
-    private val imageIdList = listOf(
-        R.drawable.image1,
-        R.drawable.image2,
-        R.drawable.image3,
-        R.drawable.image4,
-        R.drawable.image5,
-        R.drawable.image6
-    )
+    private var editLauncher: ActivityResultLauncher<Intent>? = null
 
-    private var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
         init()
+        editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                adapter.addMyPhoto(it.data?.getSerializableExtra("photo") as Plant)
+            }
+        }
     }
 
     private fun init() {
@@ -40,11 +36,7 @@ class MainActivity : AppCompatActivity() {
             rcView.layoutManager = GridLayoutManager(this@MainActivity, 2)
             rcView.adapter = adapter
             buttonAdd.setOnClickListener {
-
-                if (index > 5) index = 0
-                val photo = Plant(imageIdList[index], "Photo ${index + 1}")
-                adapter.addMyPhoto(photo)
-                index++
+                editLauncher?.launch(Intent(this@MainActivity, EditActivity::class.java))
             }
         }
     }
