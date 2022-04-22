@@ -1,6 +1,10 @@
 package com.example.mylearningandriod
 
+import java.io.Serializable
+
+
 data class Plant(
-    val imageId : Int,
-    val title : String
-)
+    val imageId: Int,
+    val title: String,
+    val description: String
+) : Serializable

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MyLearningAndriod</string>
     <string name="add_photo">add Photo</string>
+    <string name="next">Next</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="done">done</string>
 </resources>
