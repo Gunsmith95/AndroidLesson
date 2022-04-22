@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private val adapter = MyAdapter()
     private var editLauncher: ActivityResultLauncher<Intent>? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
